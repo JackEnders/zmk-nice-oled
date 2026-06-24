@@ -1,5 +1,4 @@
 #include "animation.h"
-#include "util.h"
 #if !IS_ENABLED(CONFIG_NICE_OLED_WIDGET_ANIMATION_PERIPHERAL_SMART_BATTERY)
 #include <stdlib.h>
 #include <zephyr/kernel.h>
@@ -201,10 +200,6 @@ void draw_animation(lv_obj_t *canvas, struct zmk_widget_screen *widget) {
     lv_img_set_src(art, FIXED_IMAGE_VIM);
 #elif IS_ENABLED(CONFIG_NICE_OLED_WIDGET_STATIC_IMAGE_PERIPHERAL_VIP_MARCOS)
     lv_img_set_src(art, FIXED_IMAGE_VIP_MARCOS);
-    // Custom croc is ALPHA_1BIT: draw it in the foreground colour and keep the
-    // background transparent so battery/connection status remain visible.
-    lv_obj_set_style_img_recolor(art, LVGL_FOREGROUND, 0);
-    lv_obj_set_style_img_recolor_opa(art, LV_OPA_COVER, 0);
 #else
     int length = sizeof(crystal_imgs) / sizeof(crystal_imgs[0]);
     srand(k_uptime_get_32());
